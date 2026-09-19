@@ -25,7 +25,7 @@ jobs:
       run: ./gradlew build
 
     - name: Subir Mod Terminado (Artifact)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Mob-Leveling-v1.0-JAR
         path: build/libs/*.jar
