@@ -1,0 +1,31 @@
+name: Compilar Mob Leveling 1.20.1
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configurar Java 17 Nativo
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Dar permisos de ejecucion a Gradle
+      run: chmod +x gradlew
+
+    - name: Compilar Archivo JAR con Gradle
+      run: ./gradlew build
+
+    - name: Subir Mod Terminado (Artifact)
+      uses: actions/upload-artifact@v3
+      with:
+        name: Mob-Leveling-v1.0-JAR
+        path: build/libs/*.jar
